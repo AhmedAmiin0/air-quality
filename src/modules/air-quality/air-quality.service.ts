@@ -37,6 +37,7 @@ export class AirQualityService {
                     aqius: data.current.pollution.aqius,
                     city: data.city,
                 })
+                console.log("Payload", payload);
                 return from(this.airQualityRepository.createAirQuality(payload)).pipe(
                     map((data) => data)
                 );

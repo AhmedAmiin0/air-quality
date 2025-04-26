@@ -1,5 +1,5 @@
 
-import { PollutionDto } from '@/shared/dtos/pollution.dto';
+import { PollutionDto } from '@/shared/dtos';
 import { Expose, plainToInstance, Transform, Type } from 'class-transformer';
 
 class ResultDto {

@@ -1,0 +1,59 @@
+{
+  "verbose": true,
+  "moduleFileExtensions": [
+    "js",
+    "json",
+    "ts"
+  ],
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": [
+    "src//*.(t|j)s"
+  ],
+  "resetMocks": true,
+  "clearMocks": true,
+  "detectOpenHandles": false,
+  "testTimeout": 15000,
+  "maxWorkers": 1,
+  "coveragePathIgnorePatterns": [
+    "./dist",
+    "./coverage",
+    "./coverage-e2e",
+    "./node_modules",
+    "./turbo",
+    "./test",
+    ".eslintrc.js",
+    "./*.module.ts",
+    "./index.ts",
+    "main.ts",
+    "tracing.ts",
+    ".*repository.ts",
+    "./migrations",
+    ".*entity.ts",
+    ".*exception.ts",
+    ".*filter.ts"
+  ],
+  "modulePathIgnorePatterns": [
+    "./dist",
+    "./coverage",
+    "./coverage-e2e",
+    "./node_modules",
+    "./turbo"
+  ],
+  "coverageDirectory": "./coverage",
+  "testEnvironment": "node",
+  "collectCoverage": true,
+  "coverageThreshold": {
+    "global": {
+      "statements": 4,
+      "branches": 4,
+      "lines": 4,
+      "functions": 4
+    }
+  },
+  "moduleNameMapper": {
+    "^@/(.*)$": "<rootDir>/src/$1"
+  }
+}

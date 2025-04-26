@@ -4,10 +4,6 @@ export class PollutionDto {
     @Expose({
         name: "aqius"
     })
-    @Transform(({ value }) => {
-        console.log("Transforming aqius value:", value); // Debugging line
-        return value
-    })
     public aqius: number;
 
     @Expose({ name: "mainus" })

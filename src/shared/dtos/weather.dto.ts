@@ -2,24 +2,24 @@ import { Expose, Transform } from 'class-transformer';
 
 export class WeatherDto {
     @Expose({ name: 'ts' })
-    public timestamp: string;
+    public ts: string;
 
     @Expose({ name: 'tp' })
-    public temperatureCelsius: number;
+    public tp: number;
 
     @Expose({ name: 'pr' })
-    public pressureHpa: number;
+    public pr: number;
 
     @Expose({ name: 'hu' })
-    public humidityPercentage: number;
+    public hu: number;
 
     @Expose({ name: 'ws' })
-    public windSpeedKmh: number;
+    public ws: number;
 
     @Expose({ name: 'wd' })
-    public windDirectionDegrees: number;
+    public wd: number;
 
     @Expose({ name: 'ic' })
-    public iconCode: string;
+    public ic: string;
 
 }
