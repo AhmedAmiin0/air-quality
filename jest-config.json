@@ -10,7 +10,7 @@
     "^.+\\.(t|j)s$": "ts-jest"
   },
   "collectCoverageFrom": [
-    "src//*.(t|j)s"
+    "src/**/*.(t|j)s"
   ],
   "resetMocks": true,
   "clearMocks": true,
@@ -18,22 +18,17 @@
   "testTimeout": 15000,
   "maxWorkers": 1,
   "coveragePathIgnorePatterns": [
-    "./dist",
-    "./coverage",
-    "./coverage-e2e",
     "./node_modules",
-    "./turbo",
-    "./test",
-    ".eslintrc.js",
-    "./*.module.ts",
-    "./index.ts",
+    ".*\\.module\\.ts$",
+    ".*\\.config\\.ts$",
+    ".*\\.entity\\.ts$",
+    ".*\\.dto\\.ts$",
+    ".*\\.interface\\.ts$",
+    ".*\\.mock\\.ts$",
     "main.ts",
     "tracing.ts",
-    ".*repository.ts",
-    "./migrations",
-    ".*entity.ts",
-    ".*exception.ts",
-    ".*filter.ts"
+    "index.ts",
+    "src/shared/database"
   ],
   "modulePathIgnorePatterns": [
     "./dist",
@@ -47,10 +42,10 @@
   "collectCoverage": true,
   "coverageThreshold": {
     "global": {
-      "statements": 4,
-      "branches": 4,
-      "lines": 4,
-      "functions": 4
+      "statements": 80,
+      "branches": 75,
+      "lines": 80,
+      "functions": 80
     }
   },
   "moduleNameMapper": {

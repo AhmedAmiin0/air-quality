@@ -2,7 +2,7 @@ import { Expose, Transform } from "class-transformer";
 
 export class PollutionPeakDto {
   @Expose()
-  id: string; 
+  id: number; 
 
   @Expose()
   aqius: number;

@@ -11,9 +11,10 @@ export class IqairClient {
     protected apiKey?: string;
     protected serviceName?: string;
     constructor(private readonly axiosService: HttpService, configService: ConfigService) {
-        this.apiKey = configService.get<string>('iqair.apiKey');
-        this.serviceName = configService.get<string>('iqair.serviceName');
-        this.axiosService.axiosRef.defaults.baseURL = configService.get<string>('iqair.baseUrl');
+        const { apiKey, serviceName, baseUrl } = configService.get('iqair');
+        this.apiKey = apiKey;
+        this.serviceName = serviceName
+        this.axiosService.axiosRef.defaults.baseURL = baseUrl
     }
 
     getAirQualityDataForNearestCity(params: GetAirQualityDto): Observable<IQAirApiResponse> {
