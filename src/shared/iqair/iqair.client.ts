@@ -9,13 +9,11 @@ import { GetAirQualityDto } from '@/modules/air-quality/dto/get-air-quality.dto'
 @Injectable()
 export class IqairClient {
     protected apiKey?: string;
-    protected baseUrl?: string;
     protected serviceName?: string;
     constructor(private readonly axiosService: HttpService, configService: ConfigService) {
         this.apiKey = configService.get<string>('iqair.apiKey');
-        this.baseUrl = configService.get<string>('iqair.baseUrl');
         this.serviceName = configService.get<string>('iqair.serviceName');
-        this.axiosService.axiosRef.defaults.baseURL = this.baseUrl;
+        this.axiosService.axiosRef.defaults.baseURL = configService.get<string>('iqair.baseUrl');
     }
 
     getAirQualityDataForNearestCity(params: GetAirQualityDto): Observable<IQAirApiResponse> {
