@@ -1,241 +1,84 @@
-# Air Control 🌬️
+# Air Quality API
 
 <p align="center">
   <img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" />
 </p>
 
-<p align="center">A robust NestJS-based backend application for monitoring and managing air quality data.</p>
+## Overview
 
-<p align="center">
-  <a href="#description">Description</a> •
-  <a href="#key-features">Key Features</a> •
-  <a href="#tech-stack">Tech Stack</a> •
-  <a href="#getting-started">Getting Started</a> •
-  <a href="#api-documentation">API Documentation</a> •
-  <a href="#project-structure">Project Structure</a> •
-  <a href="#development">Development</a> •
-  <a href="#testing">Testing</a> •
-  <a href="#deployment">Deployment</a> •
-  <a href="#about">About</a> •
-  <a href="#license">License</a>
-</p>
+REST API for fetching air quality data from IQAir API. Developed as a coding challenge for Yassir.
 
-## Description
+### Requirements Implemented
 
-Air Control is a sophisticated backend application built with NestJS framework, designed to provide a scalable and maintainable solution for air quality monitoring and management. The application follows industry best practices, clean architecture principles, and modern development patterns.
+✅ REST API with Node.js (NestJS)  
+✅ IQAir API integration using nearest_city endpoint  
+✅ CRON job monitoring Paris air quality every minute  
+✅ MySQL database storage with timestamps  
+✅ API documentation with Swagger  
+✅ Unit and integration tests
 
-The system interfaces with external air quality services, processes data, and provides RESTful API endpoints for clients to access real-time and historical air quality information.
+## Installation
 
-> **Note:** This project was developed as a technical assessment task for Yassir, demonstrating skills in building robust backend applications with NestJS and related technologies.
-
-## Key Features
-
-✅ **Air Quality Monitoring**: Real-time data collection and analysis  
-✅ **RESTful API**: Well-structured endpoints following REST principles  
-✅ **Database Integration**: Robust data persistence with TypeORM and MySQL  
-✅ **Scheduled Tasks**: Automated data collection and processing with @nestjs/schedule  
-✅ **API Documentation**: Comprehensive Swagger documentation  
-✅ **Environment Configuration**: Flexible configuration management  
-✅ **Validation**: Request validation using class-validator  
-✅ **Comprehensive Testing**: Unit and E2E tests with Jest  
-✅ **Code Quality**: Linting and formatting with ESLint and Prettier
-
-## Tech Stack
-
-### Core
-- [NestJS](https://nestjs.com/) - Progressive Node.js framework
-- [TypeScript](https://www.typescriptlang.org/) - Typed JavaScript
-- [Express](https://expressjs.com/) - Web framework
-
-### Database
-- [TypeORM](https://typeorm.io/) - Object-Relational Mapping
-- [MySQL](https://www.mysql.com/) - Relational database
-
-### API & Integration
-- [Axios](https://axios-http.com/) - HTTP client
-- [Swagger](https://swagger.io/) - API documentation
-- [@nestjs/axios](https://docs.nestjs.com/techniques/http-module) - HTTP module for NestJS
-
-### Validation & Transformation
-- [class-validator](https://github.com/typestack/class-validator) - Validation
-- [class-transformer](https://github.com/typestack/class-transformer) - Object transformation
-
-### Testing
-- [Jest](https://jestjs.io/) - Testing framework
-- [Supertest](https://github.com/visionmedia/supertest) - HTTP testing
-
-### Development & Quality Tools
-- [ESLint](https://eslint.org/) - Linting
-- [Prettier](https://prettier.io/) - Code formatting
-- [SWC](https://swc.rs/) - Fast TypeScript/JavaScript compiler
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js (v18 or higher)
-- pnpm package manager (`npm install -g pnpm`)
-- MySQL database (v8.0 or higher)
-- Git
-
-### Installation
-
-1. Clone the repository:
+1. Clone the repository and install dependencies:
 ```bash
-git clone https://github.com/your-username/air-control.git
-cd air-control
-```
-
-2. Install dependencies:
-```bash
+git clone https://github.com/your-username/air-quality.git
+cd air-quality
 pnpm install
 ```
 
-3. Configure environment variables:
-   
-   Create a `.env` file in the root directory with the following variables:
+2. Configure environment variables in `.env`:
 ```env
-# Application
-PORT=3000
-NODE_ENV=development
+# IQAir API Configuration
+IQAIR_API_SECRET=your_iqair_api_secret
+IQAIR_BASE_URL=http://api.airvisual.com/v2/
+IQAIR_SERVICE_NAME=IQAIR
 
-# Database
-DATABASE_HOST=localhost
-DATABASE_PORT=3306
-DATABASE_USERNAME=root
-DATABASE_PASSWORD=your_password
-DATABASE_NAME=air_control
-
-# External APIs
-IQAIR_API_KEY=your_iqair_api_key
-IQAIR_BASE_URL=https://api.iqair.com/v2
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=3306
+DB_USER=root
+DB_PASSWORD=your_password
+DB_NAME=airquality
+DB_TYPE=mysql
 ```
 
-4. Initialize the database:
+## Usage
+
+### Start the application
 ```bash
-# Run TypeORM migrations
-pnpm typeorm migration:run
-```
-
-## API Documentation
-
-Once the application is running, you can access the Swagger API documentation at:
-```
-http://localhost:3000/docs
-```
-
-The API documentation provides detailed information about all available endpoints, request/response schemas, and allows for interactive API testing.
-
-### API Endpoints Overview
-
-- `GET /api/air-quality/current` - Get current air quality data
-- `GET /api/air-quality/history` - Get historical air quality data
-- `GET /api/air-quality/statistics` - Get air quality statistics
-- Additional endpoints documented in Swagger
-
-## Project Structure
-
-```
-src/
-├── main.ts                  # Application entry point
-├── app.module.ts            # Root module
-├── app.controller.ts        # Root controller
-├── app.service.ts           # Root service
-├── modules/                 # Feature modules
-│   └── air-quality/         # Air quality module
-│       ├── controllers/     # API controllers
-│       ├── services/        # Business logic
-│       ├── entities/        # Database entities
-│       ├── dtos/            # Data Transfer Objects
-│       └── tests/           # Module tests
-├── shared/                  # Shared resources
-│   ├── database/            # Database configuration
-│   ├── dtos/                # Shared DTOs
-│   ├── interfaces/          # TypeScript interfaces
-│   ├── iqair/               # IQAir API integration
-│   └── shared.module.ts     # Shared module
-└── config/                  # Application configuration
-```
-
-## Development
-
-### Running the Application
-
-```bash
-# Development mode with hot-reload
+# Development
 pnpm start:dev
 
-# Debug mode
-pnpm start:debug
-
-# Production mode
+# Production
+pnpm build
 pnpm start:prod
 ```
 
-### Code Quality
-
+### Run tests
 ```bash
-# Lint the code
-pnpm lint
-
-# Format the code
-pnpm format
-```
-
-## Testing
-
-```bash
-# Run all tests
 pnpm test
-
-# Run tests with watch mode
-pnpm test:watch
-
-# Run tests with coverage
-pnpm test:cov
-
-# Run end-to-end tests
-pnpm test:e2e
-
-# Debug tests
-pnpm test:debug
 ```
 
-## Deployment
+## API Endpoints
 
-### Production Build
-
-```bash
-# Build the application
-pnpm build
+### Get Air Quality by Coordinates
+```
+GET /api/air-quality?lat=48.856613&lon=2.352222
 ```
 
-### Deployment Options
+### Get Most Polluted Time in Paris
+```
+GET /api/air-quality/paris/most-polluted
+```
 
-The application can be deployed to various hosting platforms:
+## Documentation
 
-- **Traditional Hosting**: Deploy the built application to a VPS or dedicated server
-- **Cloud Providers**: Deploy to AWS, Google Cloud, or Azure
-- **PaaS Solutions**: Deploy to Heroku, Vercel, or similar platforms
+Swagger API documentation: `http://localhost:3000/docs`
 
-## About
+## Tech Stack
 
-This project was developed as a technical assessment task for Yassir. It demonstrates the implementation of a backend system for air quality monitoring using modern technologies and best practices.
-
-### Requirements Fulfilled
-
-- ✅ Building a scalable REST API using NestJS
-- ✅ Integration with external air quality services
-- ✅ Database persistence using TypeORM and MySQL
-- ✅ Automated tasks using scheduling
-- ✅ Comprehensive API documentation
-- ✅ Testing with high coverage
-- ✅ Clean code architecture and organization
-
-## License
-
-This project is proprietary and developed as part of a technical assessment. All rights reserved.
-
----
-
-<p align="center">Developed as a technical assessment for Yassir</p>
+- NestJS / TypeScript / Express
+- TypeORM / MySQL
+- IQAir API integration
+- @nestjs/schedule for CRON jobs
+- Jest for testing
